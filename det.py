@@ -3,12 +3,18 @@ import cv2
 import numpy as np
 from PIL import Image
 import joblib
+import os
 
 # Load the trained model
-model = joblib.load('svm_model.pkl')
+model_path = "svm_model.pkl"
+if os.path.exists(model_path):
+    model = joblib.load(model_path)
+else:
+    st.error("Error: SVM model file not found!")
+    st.stop()
 
 # Define the classes
-classes = {0: 'Negetive Tumor', 1: 'Positive Tumor'}
+classes = {0: 'Negative Tumor', 1: 'Positive Tumor'}
 
 # Function to preprocess the image
 def preprocess_image(image):
@@ -22,7 +28,7 @@ st.title("Brain Tumor Detection")
 st.write("Upload an MRI image to check for brain tumor.")
 
 # File uploader
-uploaded_file = st.file_uploader("Choose an image...", type="jpg")
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg"])
 
 if uploaded_file is not None:
     # Read the image
