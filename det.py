@@ -19,7 +19,7 @@ classes = {0: 'Negative Tumor', 1: 'Positive Tumor'}
 # Function to preprocess the image
 def preprocess_image(image):
     img = cv2.cvtColor(np.array(image), cv2.COLOR_BGR2GRAY)
-    img = cv2.resize(img, (200, 200))
+    # img = cv2.resize(img, (200, 200))
     img = img.reshape(1, -1) / 255
     return img
 
