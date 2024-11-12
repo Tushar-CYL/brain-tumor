@@ -6,7 +6,7 @@ import joblib
 import os
 
 # Load the trained model
-model_path = "svm_model.pkl"
+model_path = "random_model.pkl"
 if os.path.exists(model_path):
     model = joblib.load(model_path)
 else:
